@@ -46,7 +46,7 @@ CardUsuarios = ({ data }= DadosProps) => {
                             duration: 800,
                         });
 
-                        navigation.push('Home');
+                        navigation.push('Usuarios');
                     } catch (error) {
                         Alert.alert('Não foi possivel excluir, tente novamente!')
                     }
@@ -71,7 +71,7 @@ CardUsuarios = ({ data }= DadosProps) => {
                         }}
 
                         onPressEdit={async () => {
-                            navigation.push('NovoUsuario', { id: data.id });
+                            navigation.push('NovoUsuario', { id_reg: data.id });
                         }}
 
                         onPressDelete={async () => {

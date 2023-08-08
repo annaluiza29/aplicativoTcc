@@ -5,8 +5,8 @@ import { NavigationContainer } from '@react-navigation/native';
 //import { Splash } from '../lotties/Splash';
 import CadUsuario from '../screens/CadUsuario';
 import Login from '../screens/Login';
-import AuthRoutes from './tab.routes';
 import NovoUsuario from '../screens/NovoUsuario';
+import AuthRoutes from './tab.routes';
 
 
 const Stack = createNativeStackNavigator();

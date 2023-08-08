@@ -12,6 +12,8 @@ import {
     RefreshControl,
     StatusBar,
     Alert,
+    Modal,
+    Linking
 
 } from 'react-native';
 
@@ -46,7 +48,7 @@ async function excluir(nome, id) {
                         duration: 800,
                     });
 
-                    navigation.push('Usuarios');
+                    navigation.push('Alimentacao');
                 } catch (error) {
                     Alert.alert('Não foi possivel excluir, tente novamente!')
                 }

@@ -13,7 +13,6 @@ import fonts from '../styles/fonts';
 import DrawerRoutes from './drawer.routes';
 import Alimentacao from '../screens/Alimentacao';
 
-
 const AppTab = createBottomTabNavigator();
 
 const AuthRoutes = () => {
@@ -84,7 +83,7 @@ const AuthRoutes = () => {
                 />
 
                 <AppTab.Screen
-                    name="Alimentacao"
+                    name="Aba 2"
                     component={Alimentacao}
                     options={{
                         tabBarIcon: (({ size, color}) => (
