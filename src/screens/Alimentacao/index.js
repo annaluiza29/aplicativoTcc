@@ -17,7 +17,7 @@ import {
 
 } from 'react-native';
 
-import { EvilIcons,MaterialIcons } from '@expo/vector-icons';
+import { EvilIcons,MaterialIcons, Ionicons } from '@expo/vector-icons';
 import Load from '../../components/Load';
 import { DrawerActions, useNavigation } from '@react-navigation/core';
 import api from '../../services/api';
@@ -247,6 +247,14 @@ export default function Alimentacao() {
 
                     </ScrollView>
                 
+                    <View style={styles.containerFloat}>
+                    <TouchableOpacity
+                        style={styles.CartButton}
+                        onPress={() => navigation.push("NovaAlimentacao", { id: '0' })}
+                    >
+                        <Ionicons name="add-outline" size={35} color="#fff" />
+                    </TouchableOpacity>
+                </View>
             </View>
         </View>
 

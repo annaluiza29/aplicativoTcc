@@ -244,4 +244,21 @@ export const styles = StyleSheet.create({
         marginRight: 0,
         
       },
+
+      containerFloat:{
+        bottom: 20,
+        right: 20,
+        position: 'absolute',
+        backgroundColor: 'green',
+        borderRadius: 10,
+        zIndex: 9,
+        width: 50,
+        height: 50,
+        justifyContent: "center",
+    },
+
+    CartButton:{
+        justifyContent: "center",
+        alignItems: "center",
+    },
 })

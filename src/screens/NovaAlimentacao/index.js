@@ -23,16 +23,16 @@ import api from '../../services/api';
 
 
 
-const NovoUsuario = FC = () => {
+const NovaAlimentacao = FC = () => {
     const navigation = any = useNavigation();
 
     const [nome, setNome] = useState("");
-    const [raca, setRaca] = useState("");
+    const [quantidade, setQuantidade] = useState("");
     const [tipo, setTipo] = useState("");
     const [checked, setChecked] = React.useState('Cachorro');
-    const [porte, setPorte] = useState('');  
+    const [periodo, setperiodo] = useState('');  
     const handleOptionChange = (itemValue) => {
-          setPorte(itemValue);};
+          setperiodo(itemValue);};
     const [sucess, setSucess] = useState(false);
     const [edit, setEdit] = useState(false);
     const [loading, setLoading] = useState(false);
@@ -42,7 +42,7 @@ const NovoUsuario = FC = () => {
     async function saveData() {
 
 
-        if (nome == "" || porte == "" || raca == "") {
+        if (nome == "" || periodo == "" || quantidade == "") {
             showMessage({
                 message: "Erro ao Salvar",
                 description: 'Preencha os Campos Obrigatórios!',
@@ -54,8 +54,8 @@ const NovoUsuario = FC = () => {
         try {
             const obj = {
                 nome: nome,
-                porte: porte,
-                raca: raca,
+                periodo: periodo,
+                quantidade: quantidade,
                 tipo: tipo,   
 
             }
@@ -126,62 +126,44 @@ const NovoUsuario = FC = () => {
 
             <ScrollView>
 
-
-            <View style={styles.tipo}>
-
-                    
-            <RadioButton
-            value="Cachorro" 
-            status={ checked === 'Cachorro' ? 'checked' : 'unchecked' } 
-            onPress={() => setChecked('Cachorro')} />
-            <Text style={styles.radioText}>Cachorro</Text>
-
-                
-            <RadioButton
-            value="Gato"
-            status={ checked === 'Gato' ? 'checked' : 'unchecked' }
-            onPress={() => setChecked('Gato')}/>
-            <Text style={styles.radioText}>Gato</Text>
-            </View>
-
-            
                 <View>
                     <Text style={styles.TitleInputs}>Nome do Pet:</Text>
 
-                    <TextInput
-                        placeholder="Nome do seu pet"
-                        onChangeText={(text) => setNome(text)}
-                        value={nome}
-                        style={styles.TextInput}
-                    />
-                </View>
-
-                <View>
-                    <Text style={styles.TitleInputs}>Raça</Text>
-
-                    <TextInput
-                        placeholder="Raça do seu pet"
-                        onChangeText={(text) => setRaca(text)}
-                        value={raca}
-                        style={styles.TextInput}
-
-                    />
-                </View>
-
-                <View>
-                    <Text style={styles.TitleInputs}>Porte:</Text>
                     <Picker
-                        style={styles.pickerporte}
-                        selectedValue={porte}
+                        style={styles.pickerperiodo}
+                        selectedValue={periodo}
                         onValueChange={handleOptionChange}
                     >
-                        <Picker.Item label="Pequeno" value="Pequeno" />
-                        <Picker.Item label="Médio" value="Médio" />
-                        <Picker.Item label="Grande" value="Grande" />
+                        <Picker.Item label="Manhã" value="Manhã" />
+                        <Picker.Item label="Tarde" value="Tarde" />
+                        <Picker.Item label="Noite" value="Noite" />
+                    </Picker>                                                           
+                </View>
+
+                <View>
+                    <Text style={styles.TitleInputs}>Período:</Text>
+                    <Picker
+                        style={styles.pickerperiodo}
+                        selectedValue={periodo}
+                        onValueChange={handleOptionChange}
+                    >
+                        <Picker.Item label="Manhã" value="Manhã" />
+                        <Picker.Item label="Tarde" value="Tarde" />
+                        <Picker.Item label="Noite" value="Noite" />
                     </Picker>
                     </View>
 
+                    <View>
+                    <Text style={styles.TitleInputs}>Quantidade de alimento:</Text>
 
+                    <TextInput
+                        placeholder="em gramas"
+                        onChangeText={(text) => setQuantidade(text)}
+                        value={quantidade}
+                        style={styles.TextInput}
+
+                    />
+                </View>
 
                 <TouchableOpacity
                     style={styles.Button}
@@ -191,7 +173,7 @@ const NovoUsuario = FC = () => {
                         setSucess(false);
                     }}
                 >
-                    <Text style={styles.ButtonText}>Salvar Cadastro</Text>
+                    <Text style={styles.ButtonText}>Salvar</Text>
                 </TouchableOpacity>
 
             </ScrollView>
@@ -203,4 +185,4 @@ const NovoUsuario = FC = () => {
     );
 }
 
-export default NovoUsuario;
+export default NovaAlimentacao;

@@ -3,7 +3,7 @@ import { styles } from './style';
 
 import {SafeAreaView, Text, View, ScrollView, TouchableOpacity, Image, ActivityIndicator, RefreshControl, StatusBar, Alert} from 'react-native';
 
-import { EvilIcons,MaterialIcons } from '@expo/vector-icons';
+import { EvilIcons,MaterialIcons, Ionicons } from '@expo/vector-icons';
 import Load from '../../components/Load';
 import { DrawerActions, useNavigation } from '@react-navigation/core';
 import api from '../../services/api';
@@ -425,25 +425,16 @@ export default function Home() {
                         </View>
                         </View>
 
-                    {/*   <View style={styles.containerBox}>
-
-                            <TouchableOpacity onPress={() => navigation.navigate("Usuario")}>
-                                <View>
-                                    <View style={styles.box}>
-                                        <MaterialIcons style={styles.iconRegistered} name="pets" size={70} color="#b82d" />
-                                        <View style={styles.textos}>
-                                            <Text style={styles.rText}>Total de Pets</Text>
-                                            <Text style={styles.lenghtText}>{dados.total_usuarios}</Text>
-                                        </View>
-                                    </View>
-                                    <Text style={styles.textFooter}>Pets Cadastrados</Text>
-                                </View>
-                            </TouchableOpacity>
-
-                        </View> */ } 
-
-
                     </ScrollView>
+
+                    <View style={styles.containerFloat}>
+                    <TouchableOpacity
+                        style={styles.CartButton}
+                        onPress={() => navigation.push("NovoPet", { id: '0' })}
+                    >
+                        <Ionicons name="add-outline" size={35} color="#fff" />
+                    </TouchableOpacity>
+                </View>
                 
             </View>
         </View>

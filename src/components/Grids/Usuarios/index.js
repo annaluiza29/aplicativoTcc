@@ -71,7 +71,7 @@ CardUsuarios = ({ data }= DadosProps) => {
                         }}
 
                         onPressEdit={async () => {
-                            navigation.push('NovoUsuario', { id_reg: data.id });
+                            navigation.push('NovoPet', { id_reg: data.id });
                         }}
 
                         onPressDelete={async () => {

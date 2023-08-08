@@ -75,7 +75,7 @@ const CadUsuario= FC= () => {
                 type: "success",
                 duration: 800,
             });
-            navigation.push("NovoUsuario")
+            navigation.push("NovoPet")
 
         } catch (error) {
             Alert.alert("Ops", "Alguma coisa deu errado, tente novamente.");
