@@ -93,7 +93,6 @@ const SwipeableRow = ({ children, onPressWhatsapp, onPressEdit, onPressDelete } 
                         onPress={() => onPressDelete()}
                     >
                         <MaterialCommunityIcons name="delete-outline" size={30} color="#FFF" />
-                        
                     </TouchableOpacity>
                 </View>
             </View>

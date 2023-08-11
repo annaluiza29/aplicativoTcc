@@ -8,6 +8,7 @@ import Login from '../screens/Login';
 import NovoPet from '../screens/NovoPet';
 import AuthRoutes from './tab.routes';
 import NovaAlimentacao from '../screens/NovaAlimentacao';
+import Usuario from '../screens/Usuario';
 
 
 const Stack = createNativeStackNavigator();
@@ -20,6 +21,7 @@ function StackNavigator(){
             <Stack.Screen name="Login" component={Login} /> 
             <Stack.Screen name="NovoPet" component={NovoPet} /> 
             <Stack.Screen name="Home" component={AuthRoutes} /> 
+            <Stack.Screen name="Usuario" component={Usuario} /> 
             <Stack.Screen name="NovaAlimentacao" component={NovaAlimentacao} /> 
         </Stack.Navigator>
     )

@@ -6,9 +6,9 @@ export const styles = StyleSheet.create({
         backgroundColor: '#fafafa',
         padding: 5,
         width: '100%',
-        height: 80,
+        height: 50,
         justifyContent: "center",
-        marginBottom: 30,
+        marginBottom: 10,
         zIndex: 11,
         borderRadius: 10,
     },
@@ -47,7 +47,6 @@ export const styles = StyleSheet.create({
             fontFamily: fonts.text,
             fontSize: 18,
             marginBottom:12,
-            marginLeft: 20
         },
     
         Valor:{
@@ -68,7 +67,7 @@ export const styles = StyleSheet.create({
         Section:{
             flexDirection: 'row',
             alignItems: "center",
-            marginTop: 35,
+            marginTop: 5,
         },
     
         Entrada:{

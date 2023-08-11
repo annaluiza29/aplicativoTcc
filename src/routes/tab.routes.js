@@ -12,6 +12,7 @@ import { AntDesign, MaterialIcons, MaterialCommunityIcons, Ionicons  } from '@ex
 import fonts from '../styles/fonts';
 import DrawerRoutes from './drawer.routes';
 import Alimentacao from '../screens/Alimentacao';
+import Usuario from '../screens/Usuario';
 
 const AppTab = createBottomTabNavigator();
 
@@ -84,7 +85,7 @@ const AuthRoutes = () => {
 
                 <AppTab.Screen
                     name="Aba 2"
-                    component={Alimentacao}
+                    component={Usuario}
                     options={{
                         tabBarIcon: (({ size, color}) => (
                             <MaterialIcons

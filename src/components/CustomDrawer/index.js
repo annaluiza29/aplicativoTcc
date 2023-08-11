@@ -1,11 +1,9 @@
 import React from 'react';
-import { Alert, Image, ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import { Alert, AsyncStorage, Image, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import { MaterialIcons, Entypo } from '@expo/vector-icons';
 
 import { styles } from './styles';
 import { DrawerActions, useNavigation } from '@react-navigation/core';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import Button from '../../screens/button';
 
 const CustomDrawer= FC = () => {
     const navigation=  any= useNavigation();
@@ -40,11 +38,6 @@ const CustomDrawer= FC = () => {
             <ScrollView
                 style={styles.container}
             >
-                <View>
-                    <Button></Button>
-                </View>
-
-
                 <View>
                     <TouchableOpacity
                         style={styles.Pages}

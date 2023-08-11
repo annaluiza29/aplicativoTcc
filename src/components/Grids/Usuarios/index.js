@@ -4,8 +4,8 @@ import {Image, TextInput, AsyncStorage, Modal, Alert, Linking, Text, TouchableOp
 import SwipeableRow from '../../Linhas/Usuarios';
 import api from '../../../services/api';
 import url from '../../../services/url';
-import { styles } from './styles';
-
+import { styles } from './styles'
+;
 import { showMessage, hideMessage } from "react-native-flash-message";
 import { EvilIcons, MaterialIcons, AntDesign, Ionicons } from '@expo/vector-icons';
 
@@ -14,7 +14,8 @@ const DadosProps= {
         id: string,
         nome: string,
         porte: string,        
-        raca: string      
+        raca: string,
+        tipo: string,
     }
 }
 
@@ -37,7 +38,7 @@ CardUsuarios = ({ data }= DadosProps) => {
                 text: 'Sim',
                 onPress: async () => {
                     try {
-                        const response = await api.get(`pam3etim/bd/usuarios/excluirUsu.php?id=${id}`);
+                        const response = await api.get(`pam3etim/bd/usuarios/excluir.php?id=${id}`);
 
                         showMessage({
                             message: "Excluído Sucesso",
@@ -58,7 +59,7 @@ CardUsuarios = ({ data }= DadosProps) => {
       
     return (
         <>
-            {data.porte === undefined && data.nome === undefined ?
+            {data.id === undefined && data.nome === undefined ?
                
                <Text style={{ color: '#595858', fontSize: 14, marginTop:10, alignContent:"center", textAlign:"center" }}>Nenhum Registro Encontrado!</Text>
                 
@@ -71,11 +72,11 @@ CardUsuarios = ({ data }= DadosProps) => {
                         }}
 
                         onPressEdit={async () => {
-                            navigation.push('NovoPet', { id_reg: data.id });
+                            navigation.push('NovoUsuario', { id: data.id });
                         }}
 
                         onPressDelete={async () => {
-                            excluir(data.nome, data.raca);
+                            excluir(data.nome, data.id);
                         }}
 
                       
@@ -85,12 +86,12 @@ CardUsuarios = ({ data }= DadosProps) => {
                             onPress={() => setAbrirModal(true)}
                         >     
                              <View style={{flex:1, flexDirection:'row', justifyContent:'space-between', marginTop:-5}}>                       
-                             <View style={{width:65, paddingTop: 5}}>
-                             <MaterialIcons name="pets" size={50} />
+                             <View style={{width:65}}>
+                              <Image style={{width:50, height:50, }} source={{uri:(url + 'apiModelo/imagem.jpg')}} />
                               </View>
                               <View style={{ width: '100%', marginTop: 3 }}>
-                            <Text style={{ color: '#000', fontSize:14 }}>{data.nome} - {data.raca}</Text>
-                            <Text style={{ color: '#000', fontSize:14, paddingTop:8 }}> Porte: {data.porte}</Text>
+                            <Text style={{ color: '#000', fontSize:12 }}>{data.nome} - {data.tipo}</Text>
+                            <Text style={{ color: '#000', fontSize:12 }}>{data.porte} - raca: {data.raca}</Text>
                                 </View>
                             </View>
                                  
@@ -115,38 +116,26 @@ CardUsuarios = ({ data }= DadosProps) => {
          <View style={styles.CardContainerModal}>
          <TouchableOpacity
               style={styles.removeItem}
-              onPress={() => {excluir(true);  
-                setAbrirModal(false);}}
-         >     
-              <EvilIcons name="close" size={25} color="black"/>
+              onPress={() => setAbrirModal(false)}
+            >
+              <EvilIcons name="close" size={25} color="black" />
             </TouchableOpacity>
-         <Text style={styles.Cliente}>{data.nome}</Text>
-                        
+         <Text style={styles.Cliente}>{data.nome} - {data.tipo}</Text>
+                
+
+                <View style={styles.Section}>
+                    <MaterialIcons style={styles.Icon} name="people-outline" size={22} color="#c1c1c1" />
+                                      
+                </View>              
             
 
                
                 <View style={styles.Section}>
-                    <Text style={styles.Entrada}>Porte: {data.porte}</Text>
-                    <Text style={styles.Entrada}>Raça: {data.raca}</Text>
-                    
+                    <MaterialIcons style={styles.Icon} name="mail" size={22} color="#c1c1c1" />
+                    <Text style={styles.Entrada}>porte: {data.porte}</Text>
+                    <Text style={styles.Entrada}>raca: {data.raca}</Text>
                 </View>              
 
-
-                 <TouchableOpacity onPress={() => Linking.openURL(url + 'painel/images/perfil/' + data.foto)}>
-                            {(() => {
-                                if (data.foto != 'sem-foto.jpg' && data.foto != '' && data.foto != null) {
-
-                                    return (
-                                        <View style={styles.viewImg}>
-                                            <Image style={styles.ImagemModal} source={{ uri: (url + 'painel/images/perfil/' + data.foto) }} />
-                                            <Text style={styles.textoAbrir}>(Clique para Abrir)</Text>
-                                        </View>
-                                    )
-
-                                }
-
-                            })()}
-                        </TouchableOpacity>
 
                                                 
 
