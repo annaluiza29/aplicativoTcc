@@ -7,16 +7,14 @@ import url from '../../../services/url';
 import { styles } from './styles';
 import { showMessage, hideMessage } from "react-native-flash-message";
 import { EvilIcons, MaterialIcons, AntDesign, Ionicons } from '@expo/vector-icons';
-import * as ImagePicker from 'expo-image-picker';
 
 const DadosProps= {
     data: {
         id: string,
         nome: string,
-        email: string,        
-        senha: string,
-        nivel:string,
-        foto: string,        
+        raca: string,        
+        porte: string,
+        tipo:string,
     }
 }
 
@@ -91,8 +89,8 @@ CardUsuarios = ({ data }= DadosProps) => {
                               <Image style={{width:50, height:50, }} source={{uri:(url + 'apiModelo/imagem.jpg')}} />
                               </View>
                               <View style={{ width: '100%', marginTop: 3 }}>
-                            <Text style={{ color: '#000', fontSize:12 }}>{data.nome} - {data.nivel}</Text>
-                            <Text style={{ color: '#000', fontSize:12 }}>{data.email} - Senha: {data.senha}</Text>
+                            <Text style={{ color: '#000', fontSize:12 }}>{data.nome} - {data.tipo}</Text>
+                            <Text style={{ color: '#000', fontSize:12 }}>{data.raca} - porte: {data.porte}</Text>
                                 </View>
                             </View>
                                  
@@ -121,7 +119,7 @@ CardUsuarios = ({ data }= DadosProps) => {
             >
               <EvilIcons name="close" size={25} color="black" />
             </TouchableOpacity>
-         <Text style={styles.Cliente}>{data.nome} - {data.nivel}</Text>
+         <Text style={styles.Cliente}>{data.nome} - {data.tipo}</Text>
                 
 
                 <View style={styles.Section}>
@@ -133,8 +131,8 @@ CardUsuarios = ({ data }= DadosProps) => {
                
                 <View style={styles.Section}>
                     <MaterialIcons style={styles.Icon} name="mail" size={22} color="#c1c1c1" />
-                    <Text style={styles.Entrada}>Email: {data.email}</Text>
-                    <Text style={styles.Entrada}>Senha: {data.senha}</Text>
+                    <Text style={styles.Entrada}>raca: {data.raca}</Text>
+                    <Text style={styles.Entrada}>porte: {data.porte}</Text>
                 </View>              
 
 

@@ -3,10 +3,10 @@ import React, { useEffect, useState } from "react";
 import {styles} from './style';
 import {ScrollView, Text, ActivityIndicator, FlatList, Image, TextInput, TouchableOpacity, View, Dimensions, Alert, StatusBar } from 'react-native';
 
+import Header from '../../components/Header';
 import { Ionicons, MaterialIcons } from '@expo/vector-icons';
 import api from '../../services/api';
 import Grid from '../../components/Grids/Home';
-import Topo from '../topo/Topo';
 
 export default function Home() {
 
@@ -60,17 +60,12 @@ export default function Home() {
 
 
 
-  async function Search() {
-    const response = await api.get(`pam3etim/bd/usuarios/buscar.php?buscar=${busca}`);
-    setLista(response.data.resultado);
- }
 
  useEffect(() => {
   loadData();
 }, [page, totalItems, lista]);
 
   return (
-
     <View style={{ flex: 1 }}>
     <StatusBar barStyle="light-content" />
     <View style={{ flex: 1 }}>
@@ -92,14 +87,8 @@ export default function Home() {
             </View>
         </View>
 
-        
-
-
-      <View style={{ paddingHorizontal: 15, flex: 1, }}>
-
-
         <View style={{ flex: 1, height: Dimensions.get('window').height + 30, }}>
-               
+              
                     <FlatList
                         data={lista}
                         renderItem={renderItem}
@@ -127,12 +116,12 @@ export default function Home() {
                         )}
                     />
                    
-                </View>
+          </View>
 
                 <View style={styles.containerFloat}>
                     <TouchableOpacity
                         style={styles.CartButton}
-                        onPress={() => navigation.push("NovoUsuario", { id_reg: '0' })}
+                        onPress={() => navigation.push("NovoPet")}
                     >
                         <Ionicons name="add-outline" size={35} color="#fff" />
                     </TouchableOpacity>
@@ -141,7 +130,6 @@ export default function Home() {
 
       </View>
 
-    </View>
     </View>
   )
 }

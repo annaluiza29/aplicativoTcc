@@ -1,26 +1,26 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useState, useEffect } from 'react';
-import {Image, TextInput, AsyncStorage, Modal, Alert, Linking, RefreshControl, onRefresh, refreshing, Text, ScrollView, TouchableOpacity, View } from 'react-native';
+import {Image, ScrollView,RefreshControl, StatusBar, TextInput, AsyncStorage, Modal, Alert, Linking, Text, TouchableOpacity, View } from 'react-native';
 import SwipeableRow from '../../Linhas/Usuarios';
 import api from '../../../services/api';
 import url from '../../../services/url';
 import { styles } from './styles';
 import { showMessage, hideMessage } from "react-native-flash-message";
+import { AnimatedCircularProgress } from 'react-native-circular-progress';
 import { EvilIcons, MaterialIcons, AntDesign, Ionicons } from '@expo/vector-icons';
-import * as ImagePicker from 'expo-image-picker';
 
 const DadosProps= {
     data: {
         id: string,
         nome: string,
-        tipo: string,        
+        raca: string,        
         porte: string,
-        raca: string,     
+        tipo:string,
     }
 }
 
 
-cardHome = ({ data }= DadosProps) => {
+CardUsuarios = ({ data }= DadosProps) => {
    
     const [abrirModal, setAbrirModal] = useState(false);
     const navigation= any = useNavigation();
@@ -72,7 +72,7 @@ cardHome = ({ data }= DadosProps) => {
                         }}
 
                         onPressEdit={async () => {
-                            navigation.push('NovoPet', { id_reg: data.id });
+                            navigation.push('NovoUsuario', { id_reg: data.id });
                         }}
 
                         onPressDelete={async () => {
@@ -81,19 +81,13 @@ cardHome = ({ data }= DadosProps) => {
 
                       
                     >                   
-                      <ScrollView
+
+                <ScrollView
                         style={{ flex: 1 }}
                         showsVerticalScrollIndicator={false}
                         nestedScrollEnabled={true}
-                        refreshControl={
-                            <RefreshControl
-                                refreshing={refreshing}
-                                onRefresh={onRefresh}
-                            />
-                        }
                     >
 
-                    {/*Animais Cadastrados*/}
                     <View style={styles.containerBox}>
                     <View>
                         <View style={styles.box}>
@@ -121,7 +115,7 @@ cardHome = ({ data }= DadosProps) => {
                         </View>
                         </View>
 
-                                                        {/*porte/raca pet*/}
+                                {/*porte/raca pet*/}
                         <View style={styles.informacoesG}>
                         <View style={styles.informacoes2}>
                         <View style={styles.boxUnder}>
@@ -137,12 +131,64 @@ cardHome = ({ data }= DadosProps) => {
                             <Text style={styles.textInfo2}>{data.raca}</Text>
                         </View>
                         </View>
+
+
+
+
+                        {/*Quantidade ração no alimentador*/}                       
+                        <View style={styles.circleProgressView}>
+                        <AnimatedCircularProgress
+                                size={70}
+                                width={7}
+                                fill={60}
+                                tintColor="green"
+                                backgroundColor="#e0e0e0"
+                                lineCap={"round"}
+                            >
+                                {
+                                    (fill) => (
+                                        <Text style={styles.numberInside}>60%</Text>
+                                    )
+                                }
+                            </AnimatedCircularProgress>
+
+                            <View style={styles.textProgressContainer}>
+                                <Text style={styles.textProgressTitle}>Comida disponível no  alimentador</Text>
+
+                                </View>
+                        </View>
+
+                        {/*Quantidade ração no pote*/}
+                    <View style={styles.circleProgressView}>
+                        <AnimatedCircularProgress
+                                size={70}
+                                width={7}
+                                fill={70}
+                                tintColor="red"
+                                backgroundColor="#e0e0e0"
+                                lineCap={"round"}
+                            >
+                                {
+                                    (fill) => (
+                                        <Text style={styles.numberInside}>70%</Text>
+                                    )
+                                }
+                            </AnimatedCircularProgress>
+
+                            <View style={styles.textProgressContainer}>
+                                <Text style={styles.textProgressTitle}>Comida disponível na bandeja do Pet</Text>
+
+                                </View>
+                        </View>
+
+                        </View>
+
+
                         
                         </View>
                         </View>
-                        </View>
-                    </ScrollView>
 
+                    </ScrollView>
                         </SwipeableRow>
                    
                 </View>
@@ -150,8 +196,65 @@ cardHome = ({ data }= DadosProps) => {
 
 
 
+<Modal 
+        visible={abrirModal}
+        animationType={'fade'}
+        transparent={true}
+        onRequestClose={() => {
+          setAbrirModal(!abrirModal)
+        }}
+      >
+          <View style={styles.centralizarModal}>
+         <View style={styles.CardContainerModal}>
+         <TouchableOpacity
+              style={styles.removeItem}
+              onPress={() => setAbrirModal(false)}
+            >
+              <EvilIcons name="close" size={25} color="black" />
+            </TouchableOpacity>
+         <Text style={styles.Cliente}>{data.nome} - {data.tipo}</Text>
+                
+
+                <View style={styles.Section}>
+                    <MaterialIcons style={styles.Icon} name="people-outline" size={22} color="#c1c1c1" />
+                                      
+                </View>              
+            
+
+               
+                <View style={styles.Section}>
+                    <MaterialIcons style={styles.Icon} name="mail" size={22} color="#c1c1c1" />
+                    <Text style={styles.Entrada}>raca: {data.raca}</Text>
+                    <Text style={styles.Entrada}>porte: {data.porte}</Text>
+                </View>              
+
+
+                 <TouchableOpacity onPress={() => Linking.openURL(url + 'painel/images/perfil/' + data.foto)}>
+                            {(() => {
+                                if (data.foto != 'sem-foto.jpg' && data.foto != '' && data.foto != null) {
+
+                                    return (
+                                        <View style={styles.viewImg}>
+                                            <Image style={styles.ImagemModal} source={{ uri: (url + 'painel/images/perfil/' + data.foto) }} />
+                                            <Text style={styles.textoAbrir}>(Clique para Abrir)</Text>
+                                        </View>
+                                    )
+
+                                }
+
+                            })()}
+                        </TouchableOpacity>
+
+                                                
+
+             </View>
+             </View>
+          </Modal>
+
+
+
         </>
     );
 }
 
-export default cardHome;
+export default CardUsuarios;

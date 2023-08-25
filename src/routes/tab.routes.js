@@ -12,8 +12,8 @@ import { AntDesign, MaterialIcons, MaterialCommunityIcons, Ionicons  } from '@ex
 import fonts from '../styles/fonts';
 
 import DrawerRoutes from './drawer.routes';
-import Usuario from '../screens/Usuario';
 import Alimentacao from '../screens/Alimentacao';
+import Home from '../screens/Home';
 import { DrawerActions, useNavigation } from '@react-navigation/native';
 
 
@@ -87,53 +87,7 @@ const AuthRoutes = () => {
                     }}
                 />
 
-                <AppTab.Screen
-                    name="Usuario"
-                    component={Usuario}
-                    options={{
-                        tabBarIcon: (({ size, color}) => (
-                            <MaterialIcons
-                                name="schedule"
-                                size={size} 
-                                color={color} 
-                            />
-                        )),
 
-                        tabBarLabel: (({ focused, color}) => (
-                            <View>
-                                <Text
-                                    style={ focused ? {
-                                        color: color,
-                                        fontFamily: fonts.text,
-                                        fontSize: 12,
-                                        textAlign: 'center',
-
-                                    } : {
-                                        color: color,
-                                        fontFamily: fonts.text,
-                                        fontSize: 12
-                                    }}
-                                >
-                                    Usuários
-                                </Text>
-                                <View
-                                    style={ focused ? {
-                                        backgroundColor: color,
-                                        borderColor: color,
-                                        width: 65,
-                                        height: 2,
-                                        borderTopLeftRadius: 5,
-                                        borderTopRightRadius: 5,
-                                        marginTop: 5,
-                                    } : {
-                                        height: 2,
-                                    }}
-                                >
-                                </View>
-                            </View>
-                        ))
-                    }}
-                />
 
                 <AppTab.Screen
                     name="Aba 3"
@@ -184,7 +138,7 @@ const AuthRoutes = () => {
 
                 <AppTab.Screen
                     name="Aba 4"
-                    component={Usuario}
+                    component={Home}
 
                     options={{
                         tabBarIcon: (({ size, color}) => (

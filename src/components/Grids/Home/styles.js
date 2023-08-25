@@ -2,29 +2,11 @@ import { StyleSheet } from "react-native";
 import fonts from "../../../styles/fonts";
 
 export const styles = StyleSheet.create({
-    box:{
-        backgroundColor: '#fafafa',
-        padding: 5,
-        width: '100%',
-        height: 50,
-        justifyContent: "center",
-        marginBottom: 10,
-        zIndex: 11,
-        borderRadius: 10,
-    },
-
     centralizarModal:{    
         flex: 1,
         justifyContent: "center",    
         backgroundColor: 'rgba(0, 0, 0, 0.37)'
         },
-    
-        removeItem:{
-        justifyContent: "flex-end",
-        alignItems: "flex-end",
-        marginRight: 10,
-        marginTop: 15,
-      },
     
       CardContainerModal:{
         backgroundColor: '#FAFAFA',
@@ -168,7 +150,37 @@ export const styles = StyleSheet.create({
         fontFamily: fonts.text,
     },
 
+    containerBox:{
+        width: '90%',
+        alignSelf: "center",
+        marginBottom: 25,
+        border: '10px solid #E28934'
+    },
 
+    box:{
+        backgroundColor: 'white',
+        flexDirection: 'column',
+        padding: 10,
+        marginTop: 30,
+        borderRadius: 15,
+        borderWidth: 2,
+        borderColor: '#E28934',
+        shadowOpacity: 1,
+        elevation: 5,
+        shadowRadius: 15,
+        shadowOffset : { width: 1, height: 5},
+        height: 300,
+    },
+
+    boxUnder:{
+        borderBottomWidth: 1,
+        borderBottomColor: '#7FCFEF'
+    },
+
+    textos:{
+        justifyContent: 'flex-end',
+        alignItems: 'flex-end',
+    },
 
     informacoesG:{
         alignSelf: "center",
@@ -207,22 +219,45 @@ export const styles = StyleSheet.create({
         paddingRight: 20   
     },
 
-    containerBox:{
-        width: '90%',
+    circleProgressView:{
+        flexDirection: 'row',
         alignSelf: "center",
-        marginBottom: 25,
-        border: '10px solid #E28934'
+        marginTop: 10,
     },
 
-    box:{
-        backgroundColor: 'white',
-        flexDirection: 'column',
-        padding: 10,
-        marginTop: 30,
-        borderRadius: 15,
-        borderWidth: 2,
-        borderColor: '#E28934',
-        shadowOpacity: 1,
+    textProgress:{
+        fontFamily: fonts.text,
+        fontSize: 16,
+        color: 'gray',
+    },
+
+    textProgressTitle:{
+        fontFamily: fonts.text,
+        fontSize: 17,
+        color: '#000',
+    },
+
+    textProgressContainer:{
+        alignSelf: "center",
+        display: 'flex',
+        width: 180,
+        paddingLeft: 15
+        
+       },
+
+       numberInside:{
+        fontFamily: fonts.text,
+        fontSize: 18,
+        color: '#000',
+        textDecorationLine: 'underline',
 
     },
+
+    removeItem:{
+        justifyContent: "flex-end",
+        alignItems: "flex-end",
+        marginRight: 0,
+        
+      },
+
 })
