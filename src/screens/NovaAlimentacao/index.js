@@ -1,15 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import { ScrollView, Platform, Alert, Text, TextInput, View, TouchableOpacity, ActivityIndicator, Input } from 'react-native';
+import React, { useState } from 'react';
+import {ScrollView, Alert, Text, TextInput, View, TouchableOpacity, ActivityIndicator} from 'react-native';
 import { Picker } from '@react-native-picker/picker';
-import { RouteProp, useNavigation, useRoute } from '@react-navigation/core';
-import { AntDesign, Ionicons } from '@expo/vector-icons';
+import {useNavigation} from '@react-navigation/core';
+import { Ionicons } from '@expo/vector-icons';
 import { styles } from './style';
 import { Success } from '../../lotties/Success';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import { showMessage, hideMessage } from "react-native-flash-message";
+import {showMessage} from "react-native-flash-message";
 import Topo from '../topo/Topo2';
 import api from '../../services/api';
-import { shadow } from 'react-native-paper';
 
 
 
@@ -27,7 +26,6 @@ const NovaAlimentacao = FC = () => {
     const handleOptionChanges = (itemValue) => {
           setNome(itemValue);};
     const [sucess, setSucess] = useState(false);
-    const [edit, setEdit] = useState(false);
     const [loading, setLoading] = useState(false);
     const [horario, setHorario] = useState("");
     const [showTimePicker, setShowTimePicker] = useState(false);
@@ -59,7 +57,7 @@ const NovaAlimentacao = FC = () => {
                 nome: nome,
                 periodo: periodo,
                 quantidade: quantidade,
-   		        horario: showTimePicker
+   		        horario: horario
 
             }
        
@@ -78,7 +76,7 @@ const NovaAlimentacao = FC = () => {
                 return;
             }
 
-            setSucess(true);
+            setSucess(true);    
             showMessage({
                 message: "Salvo com Sucesso",
                 description: "Registro Salvo",
@@ -189,7 +187,7 @@ const NovaAlimentacao = FC = () => {
 
                         {horario && (
                 <Text style={styles.horario}>Hora selecionada: {horario}</Text>
-                )}
+                )}  
 
                 </View>
 
@@ -199,15 +197,12 @@ const NovaAlimentacao = FC = () => {
                         setSucess(true);
                         saveData();
                         setSucess(false);
-                    }}
+                }}
                 >
                     <Text style={styles.ButtonText}>Salvar</Text>
                 </TouchableOpacity>
 
             </ScrollView>
-
-
-
 
         </View>
     );

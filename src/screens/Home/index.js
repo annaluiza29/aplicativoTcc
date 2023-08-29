@@ -16,7 +16,6 @@ export default function Home() {
     const [loading, setLoading] = useState(false);
     const [page, setPage] = useState(1);
     const [totalItems, setTotalItems] = useState(0);
-    const [busca, setBusca] = useState("");
     const [onEndReachedCalledDuringMomentum, setMT] = useState(true);
 
 

@@ -19,7 +19,7 @@ const DadosProps= {
 }
 
 
-CardUsuarios = ({ data }= DadosProps) => {
+CardHome = ({ data }= DadosProps) => {
    
     const [abrirModal, setAbrirModal] = useState(false);
     const navigation= any = useNavigation();
@@ -164,4 +164,4 @@ CardUsuarios = ({ data }= DadosProps) => {
     );
 }
 
-export default CardUsuarios;
+export default CardHome;

@@ -11,9 +11,8 @@ import {
     ActivityIndicator,
     RefreshControl,
     StatusBar,
-    Alert,
-    Modal,
-    Linking
+    Dimensions,
+    FlatList
 
 } from 'react-native';
 
@@ -21,80 +20,65 @@ import { EvilIcons,MaterialIcons, Ionicons } from '@expo/vector-icons';
 import Load from '../../components/Load';
 import { DrawerActions, useNavigation } from '@react-navigation/core';
 import api from '../../services/api';
-import { AnimatedCircularProgress } from 'react-native-circular-progress';
 import { useIsFocused } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
-
-
-async function excluir(nome, id) {
-
-    Alert.alert('Sair', `Você tem certeza que deseja excluir o Registro : ` + nome, [
-        {
-            text: 'Não',
-            style: 'cancel',
-        },
-
-        {
-            text: 'Sim',
-            onPress: async () => {
-                try {
-                    const response = await api.get(`pam3etim/BD/usuarios/excluir.php?id=${id}`);
-
-                    showMessage({
-                        message: "Excluído Sucesso",
-                        description: "Registro Excluído",
-                        type: "info",
-                        duration: 800,
-                    });
-
-                    navigation.push('Alimentacao');
-                } catch (error) {
-                    Alert.alert('Não foi possivel excluir, tente novamente!')
-                }
-            }
-        }
-    ])
-}
-
-    
-
+import Grid from '../../components/Grids/Alimentacao';
 
 
 export default function Alimentacao() {
-    const navigation= useNavigation();
-    const isFocused = useIsFocused();
+    const navigation = useNavigation();
 
-    const [dados, setDados] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
-    const [refreshing, setRefreshing] = useState(false);
-    const [usu, setUsu] = useState('');
+    const [lista, setLista] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [page, setPage] = useState(1);
+    const [totalItems, setTotalItems] = useState(0);
+    const [onEndReachedCalledDuringMomentum, setMT] = useState(true);
 
 
-    async function listarDados() {
+    async function loadData() {        
+      try {
+          const response = await api.get(`pam3etim/bd/usuarios/listarAli.php?pagina=${page}&limite=10`);
 
-        try {
-            const user = await AsyncStorage.getItem('@user');
-            const res = await api.get(`pam3etim/bd/usuarios/listar-cards.php?user=${user}`);
-            setDados(res.data);
+          if(lista.length >= response.data.totalItems) return;
 
+          if (loading === true) return;
+    
+          setLoading(true);
+    
+          setLista([...lista, ...response.data.resultado]);
+          setPage(page + 1);
         } catch (error) {
-            console.log("Erro ao Listar " + error);
-        } finally {
-            setIsLoading(false);
-            setRefreshing(false);   
+          console.log(error)
         }
-    }
+  }
 
-    useEffect(() => {
-        listarDados();
-    }, [isFocused]);
 
-    const onRefresh = () => {
-        setRefreshing(true);
-        listarDados();
+  const renderItem = function ({ item }) {
+    return (
+        <Grid
+            data={item}
+        />
+    )
+}
 
-    };
+  function Footer() {
+    if (!load) return null;
+
+    return (
+        <View style={styles.loading}>
+            <ActivityIndicator size={25} color="#000" />
+        </View>
+    )
+}
+
+
+
+
+
+
+ useEffect(() => {
+  loadData();
+}, [page, totalItems, lista]);
 
 
     return (
@@ -118,134 +102,36 @@ export default function Alimentacao() {
                     <Text style={styles.TitleBox}>Rotina de Alimentação:</Text>
                 </View>
 
-                    <ScrollView
-                        style={{ flex: 1 }}
-                        showsVerticalScrollIndicator={false}
-                        nestedScrollEnabled={true}
-                        refreshControl={
-                            <RefreshControl
-                                refreshing={refreshing}
-                                onRefresh={onRefresh}
-                            />
-                        }
-                    >
-
-
-                    {/*Animais Cadastrados*/}
-                    <View style={styles.containerBox}>
-                    <View>
-                        <View style={styles.box}>
-                        <TouchableOpacity
-                       style={styles.removeItem}
-                       onPress={() => excluir()}
-                    >
-                    <EvilIcons name="close" size={25} color="black"/>
-                    </TouchableOpacity>
-
-                             {/*nome/tipo pet*/}
-                        <View style={styles.informacoesG}>
-                        <View style={styles.informacoes}>
-                        <View style={styles.boxUnder}>
-                            <Text style={styles.titleInfo}>Período:</Text>
-                        </View>
-                            <Text style={styles.textInfo}>Hora</Text>
-                        </View>
-
-                        <View style={styles.informacoes}>
-                        <View style={styles.boxUnder}>
-                            <Text style={styles.titleInfo}>Quantidade de alimento:</Text>
-                        </View>
-                            <Text style={styles.textInfo}>quantia</Text>
-                        </View>
-                        </View>
-
-
-
-                        </View>
-
-
-                        
-                        </View>
-                        </View>
-                    {/*Animais Cadastrados*/}
-                    <View style={styles.containerBox}>
-                    <View>
-                        <View style={styles.box}>
-
-                        <TouchableOpacity
-                       style={styles.removeItem}
-                       onPress={() => excluir(true)}
-                    >
-                    <EvilIcons name="close" size={25} color="black"/>
-                    </TouchableOpacity>
-                             {/*nome/tipo pet*/}
-                        <View style={styles.informacoesG}>
-                        <View style={styles.informacoes}>
-                        <View style={styles.boxUnder}>
-                            <Text style={styles.titleInfo}>Período:</Text>
-                        </View>
-                            <Text style={styles.textInfo}>Hora</Text>
-                        </View>
-
-                        <View style={styles.informacoes}>
-                        <View style={styles.boxUnder}>
-                            <Text style={styles.titleInfo}>Quantidade de alimento:</Text>
-                        </View>
-                            <Text style={styles.textInfo}>quantia</Text>
-                        </View>
-                        </View>
-
-
-
-                        </View>
-
-
-                        
-                        </View>
-                        </View>
-                        
-                    {/*Animais Cadastrados*/}
-                    <View style={styles.containerBox}>
-
-                    <View>
-                        <View style={styles.box}>
-
-                        <TouchableOpacity
-                       style={styles.removeItem}
-                       onPress={() => excluir(true)}
-                    >
-                    <EvilIcons name="close" size={25} color="black"/>
-                    </TouchableOpacity>
-
-
-                             {/*nome/tipo pet*/}
-                        <View style={styles.informacoesG}>
-                        <View style={styles.informacoes}>
-                        <View style={styles.boxUnder}>
-                            <Text style={styles.titleInfo}>Período:</Text>
-                        </View>
-                            <Text style={styles.textInfo}>Hora</Text>
-                        </View>
-
-                        <View style={styles.informacoes}>
-                        <View style={styles.boxUnder}>
-                            <Text style={styles.titleInfo}>Quantidade de alimento:</Text>
-                        </View>
-                            <Text style={styles.textInfo}>quantia</Text>
-                        </View>
-                        </View>
-
-
-
-                        </View>
-
-
-                        
-                        </View>
-                        </View>
-
-
-                    </ScrollView>
+                <View style={{ flex: 1, height: Dimensions.get('window').height + 30, }}>
+              
+              <FlatList
+                  data={lista}
+                  renderItem={renderItem}
+                  keyExtractor={item => String(item.id)}
+                  onEndReachedThreshold={0.1}
+                  removeClippedSubviews
+                  initialNumToRender={10}
+                  onEndReached={(distanceFromEnd) => {
+                    if (!onEndReachedCalledDuringMomentum) {
+                      loadData().then(() => setLoading(false));
+                      setMT(true);
+                    }
+                  }}
+                  ListFooterComponent={(distanceFromEnd) => {
+                    if (!onEndReachedCalledDuringMomentum) {
+                      return <Footer load={loading} />
+                    } else {
+                      return <View></View>
+                    }
+                  }}
+                  onMomentumScrollBegin={() => setMT(false)}
+                  windowSize={10}
+                  getItemLayout={(data, index) => (
+                    { length: 50, offset: 50 * index, index }
+                  )}
+              />
+             
+            </View>
                 
                     <View style={styles.containerFloat}>
                     <TouchableOpacity
