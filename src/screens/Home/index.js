@@ -44,9 +44,9 @@ export default function Home() {
         />
     )
 }
-
+ 
   function Footer() {
-    if (!load) return null;
+  //if (!load) return null;
 
     return (
         <View style={styles.loading}>

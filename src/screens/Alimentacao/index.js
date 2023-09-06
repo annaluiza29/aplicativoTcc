@@ -62,7 +62,7 @@ export default function Alimentacao() {
 }
 
   function Footer() {
-    if (!load) return null;
+    //if (!load) return null;
 
     return (
         <View style={styles.loading}>
@@ -93,6 +93,15 @@ export default function Alimentacao() {
                         <View style={styles.top}>
                                 <Image style={styles.logo} source={require('../../assets/topAlimen.png')} />
                                 <Text style={styles.title}>ALIMENTAÇÃO</Text>
+
+                        <TouchableOpacity   
+                                style={styles.BackButton}
+                                onPress={() => navigation.push("Home")}
+                            >
+                                <Ionicons name="md-arrow-back-circle-outline" size={35} color="#fff" />
+
+                        </TouchableOpacity>
+
                         </View>
 
                     </View>

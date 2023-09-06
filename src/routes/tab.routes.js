@@ -136,54 +136,6 @@ const AuthRoutes = () => {
                     }}
                 />
 
-                <AppTab.Screen
-                    name="Aba 4"
-                    component={Home}
-
-                    options={{
-                        tabBarIcon: (({ size, color}) => (
-                            <Ionicons
-                                name="people-outline"
-                                size={size} 
-                                color={color} 
-                            />
-                        )),
-
-                        tabBarLabel: (({ focused, color}) => (
-                            <View>
-                                <Text
-                                    style={ focused ? {
-                                        color: color,
-                                        fontFamily: fonts.text,
-                                        fontSize: 12,
-                                        textAlign: 'center',
-
-                                    } : {
-                                        color: color,
-                                        fontFamily: fonts.text,
-                                        fontSize: 12
-                                    }}
-                                >
-                                    Pessoas
-                                </Text>
-                                <View
-                                    style={ focused ? {
-                                        backgroundColor: color,
-                                        borderColor: color,
-                                        width: 60,
-                                        height: 2,
-                                        borderTopLeftRadius: 5,
-                                        borderTopRightRadius: 5,
-                                        marginTop: 5,
-                                    } : {
-                                        height: 2,
-                                    }}
-                                >
-                                </View>
-                            </View>
-                        ))
-                    }}
-                />
         </AppTab.Navigator>
     )
 }

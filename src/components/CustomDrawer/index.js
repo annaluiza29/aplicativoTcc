@@ -3,7 +3,7 @@ import { Alert, AsyncStorage, Image, ScrollView, Text, TouchableOpacity, View, S
 import { MaterialIcons, Entypo } from '@expo/vector-icons';
 import { styles } from './styles';
 import { DrawerActions, useNavigation } from '@react-navigation/core';
-import Botao from '../../screens/botao';
+import Botao from '../../screens/botao'
 
 const CustomDrawer= FC = () => {
     const navigation=  any= useNavigation();
@@ -19,21 +19,6 @@ const CustomDrawer= FC = () => {
             <ScrollView
                 style={styles.container}
             >
-                <View>
-                    <TouchableOpacity
-                        style={styles.Pages}
-                        onPress={() => {
-                            navigation.navigate("Usuario")
-                            navigation.dispatch(DrawerActions.closeDrawer())
-                        }}
-                    >
-                        <MaterialIcons style={styles.iconRegistered} name="people-alt" size={30} color="gray" />
-
-                        <Text style={styles.PagesText}>Usuários</Text>
-                    </TouchableOpacity>
-
-                   
-                </View>
 
                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                             <Botao/> 

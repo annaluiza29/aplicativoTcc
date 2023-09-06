@@ -1,75 +1,54 @@
-import React, { Component } from 'react';
-import { View, Switch, Text } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, Switch, StyleSheet } from 'react-native';
+import api from '../../services/api';
 
-class Botao extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isSwitchOn: false,
-    };
-  }
+const BotaoSwitch = () => {
+  const [valor, setValor] = useState(false);
 
+  const toggleSwitch = () => {
+    const novoValor = !valor;
+    setValor(novoValor);
+    
+    // Chame a função NewValue para enviar o novo valor para o caminho desejado.
+    NewValue(novoValor);
+  };
 
-  
-
-  Botao = () => {
-    this.setState({ isSwitchOn: !this.state.isSwitchOn });
-
-    async function saveData() {
-
-        try {
-            const obj = {
-                valor: valor
-
-            }
-       
-
-            
-             const res = await api.post('pam3etim/bd/usuarios/botao.php', obj);
-
-            if (res.data.sucesso === false) {
-                showMessage({
-                    message: "Erro ao Salvar",
-                    description: res.data.mensagem,
-                    type: "warning",
-                    duration: 3000,
-                });
-
-                return;
-            }
-
-            setSucess(true);
-            showMessage({
-                message: "Salvo com Sucesso",
-                description: "Registro Salvo",
-                type: "success",
-                duration: 800,
-            });
-            navigation.push("Home")
-
-        } catch (error) {
-            Alert.alert("Ops", "Alguma coisa deu errado, tente novamente." );
-            setSucess(false);
-        }
+  // Função para enviar o novo valor para o servidor
+  const NewValue = async (novoValor) => {
+    try {
+      const obj = { valor: novoValor ? 1 : 0 };
+      console.log(obj);
+      console.log(valor);
+      const res = await api.post('pam3etim/bd/usuarios/botao.php', obj);
+      // Lida com a resposta da API, se necessário
+      console.log('Resposta da API:', res.data);
+    } catch (error) {
+      // Lida com erros da API, se ocorrerem
+      console.error('Erro ao enviar valor para a API:', error);
     }
   };
 
-  render() {
-    return (
-      <View>
-        <Text>{this.state.isSwitchOn ? 'Ativado' : 'Desativado'}</Text>
+  return (
+    <View style={styles.container}>
+      <View style={styles.switchContainer}>
+        <Text>Estado: {valor ? 'Ligado' : 'Desligado'}</Text>
         <Switch
-          value={this.state.isSwitchOn}
-          onValueChange={this.Botao}
-          onPress={() => {
-            setSucess(true);
-            saveData();
-            setSucess(false);
-        }}
+          value={valor}
+          onValueChange={toggleSwitch}
         />
       </View>
-    );
-  }
-}
+    </View>
+  );
+};
 
-export default Botao;
+const styles = StyleSheet.create({
+  container: {
+    alignItems: 'center',
+  },
+  switchContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+});
+
+export default BotaoSwitch;

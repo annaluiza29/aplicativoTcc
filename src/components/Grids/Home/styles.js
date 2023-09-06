@@ -43,6 +43,7 @@ export const styles = StyleSheet.create({
     informacoes2:{
         display: 'flex',
         flexDirection: 'row',
+        paddingLeft: 12
     },
 
     titleInfo:{

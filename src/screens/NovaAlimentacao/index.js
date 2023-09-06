@@ -4,7 +4,6 @@ import { Picker } from '@react-native-picker/picker';
 import {useNavigation} from '@react-navigation/core';
 import { Ionicons } from '@expo/vector-icons';
 import { styles } from './style';
-import { Success } from '../../lotties/Success';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import {showMessage} from "react-native-flash-message";
 import Topo from '../topo/Topo2';
@@ -102,9 +101,6 @@ const NovaAlimentacao = FC = () => {
         )
     }
 
-    if (sucess) {
-        return <Success />
-    }
 
 
 
@@ -117,7 +113,7 @@ const NovaAlimentacao = FC = () => {
                     style={styles.BackButton}
                     onPress={() => navigation.push("Alimentacao")}
                 >
-                    <Ionicons name="md-arrow-back-circle-outline" size={35} color="#484a4d" />
+                    <Ionicons name="md-arrow-back-circle-outline" size={35} color="white"/>
 
                 </TouchableOpacity>
 

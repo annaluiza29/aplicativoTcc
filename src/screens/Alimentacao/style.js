@@ -261,4 +261,11 @@ export const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
     },
+
+    BackButton:{
+     
+        position: 'absolute',
+        marginLeft: -50,
+        top: 30,
+    },
 })
