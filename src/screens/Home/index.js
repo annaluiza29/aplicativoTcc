@@ -45,16 +45,6 @@ export default function Home() {
     )
 }
  
-  function Footer() {
-  //if (!load) return null;
-
-    return (
-        <View style={styles.loading}>
-            <ActivityIndicator size={25} color="#000" />
-        </View>
-    )
-}
-
 
 
 
@@ -95,24 +85,7 @@ export default function Home() {
                         onEndReachedThreshold={0.1}
                         removeClippedSubviews
                         initialNumToRender={10}
-                        onEndReached={(distanceFromEnd) => {
-                          if (!onEndReachedCalledDuringMomentum) {
-                            loadData().then(() => setLoading(false));
-                            setMT(true);
-                          }
-                        }}
-                        ListFooterComponent={(distanceFromEnd) => {
-                          if (!onEndReachedCalledDuringMomentum) {
-                            return <Footer load={loading} />
-                          } else {
-                            return <View></View>
-                          }
-                        }}
-                        onMomentumScrollBegin={() => setMT(false)}
-                        windowSize={10}
-                        getItemLayout={(data, index) => (
-                          { length: 50, offset: 50 * index, index }
-                        )}
+                        
                     />
                    
           </View>

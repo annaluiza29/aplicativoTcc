@@ -5,9 +5,6 @@ import { RouteProp, useNavigation, useRoute } from '@react-navigation/core';
 import { AntDesign, Ionicons } from '@expo/vector-icons';
 import { styles } from './style';
 import { Success } from '../../lotties/Success';
-//import { TextInputMask } from 'react-native-masked-text';
-//import DateTimePicker from '@react-native-community/datetimepicker';
-//import { format } from 'date-fns';
 import { showMessage, hideMessage } from "react-native-flash-message";
 import { RadioButton } from 'react-native-paper';
 import Topo from '../topo/Topo2';
@@ -180,7 +177,7 @@ const NovoPet = FC = () => {
                         onValueChange={handleOptionChange}
                     >
                         <Picker.Item label="Pequeno" value="Pequeno" />
-                        <Picker.Item label="Médio" value="Médio" />
+                        <Picker.Item label="Médio" value="Medio" />
                         <Picker.Item label="Grande" value="Grande" />
                     </Picker>
                     </View>

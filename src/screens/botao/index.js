@@ -31,7 +31,7 @@ const BotaoSwitch = () => {
   return (
     <View style={styles.container}>
       <View style={styles.switchContainer}>
-        <Text>Estado: {valor ? 'Ligado' : 'Desligado'}</Text>
+        <Text>Alimentador: {valor ? 'Ligado' : 'Desligado'}</Text>
         <Switch
           value={valor}
           onValueChange={toggleSwitch}

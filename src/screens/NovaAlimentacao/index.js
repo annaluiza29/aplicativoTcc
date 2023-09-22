@@ -132,7 +132,7 @@ const NovaAlimentacao = FC = () => {
                         selectedValue={nome}
                         onValueChange={handleOptionChanges}
                     >
-                        <Picker.Item label="Manhã" value="Manhã" />
+                        <Picker.Item label="Manhã" value="Manha" />
                         <Picker.Item label="Tarde" value="Tarde" />
                         <Picker.Item label="Noite" value="Noite" />
                     </Picker>                                                           
@@ -145,7 +145,7 @@ const NovaAlimentacao = FC = () => {
                         selectedValue={periodo}
                         onValueChange={handleOptionChange}
                     >
-                        <Picker.Item label="Manhã" value="Manhã" />
+                        <Picker.Item label="Manhã" value="Manha" />
                         <Picker.Item label="Tarde" value="Tarde" />
                         <Picker.Item label="Noite" value="Noite" />
                     </Picker>
