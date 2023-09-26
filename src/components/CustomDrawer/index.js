@@ -8,6 +8,26 @@ import Botao from '../../screens/botao'
 const CustomDrawer= FC = () => {
     const navigation=  any= useNavigation();
 
+    async function logout() {
+        Alert.alert('Sair', `Você tem certeza que quer sair?`, [
+            {
+                text: 'Não',
+                style: 'cancel',
+            },
+
+            {
+                text: 'Sim',
+                onPress: async () => {
+                    try {
+                        await AsyncStorage.clear();
+                        navigation.navigate('CadUsuario');
+                    } catch (error) {
+                        Alert.alert('Não foi possivel sair, tente novamente!')
+                    }
+                }
+            }
+        ])
+    }
 
 
     return (

@@ -26,7 +26,7 @@ CardHome = ({ data }= DadosProps) => {
     
     async function excluir(nome, id) {
 
-        Alert.alert('Sair', `Você tem certeza que deseja excluir o Registro : ` + nome, [
+        Alert.alert('Sair', `Deseja excluir o pet : ` + nome, [
             {
                 text: 'Não',
                 style: 'cancel',

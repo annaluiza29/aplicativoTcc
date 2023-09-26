@@ -25,7 +25,7 @@ CardAlimentacao = ({ data }= DadosProps) => {
     
     async function excluir(nome, id) {
 
-        Alert.alert('Sair', `Você tem certeza que deseja excluir o Registro : ` + id, [
+        Alert.alert('Sair', `Deseja excluir essa alimentação? ` , [
             {
                 text: 'Não',
                 style: 'cancel',
@@ -44,7 +44,7 @@ CardAlimentacao = ({ data }= DadosProps) => {
                             duration: 800,
                         });
 
-                        navigation.push('Home');
+                        navigation.push('Alimentacao');
                     } catch (error) {
                         Alert.alert('Não foi possivel excluir, tente novamente!')
                     }
@@ -58,9 +58,13 @@ CardAlimentacao = ({ data }= DadosProps) => {
         <>
             {data.id === undefined && data.nome === undefined ?
                
+
+
+
                <Text style={{ color: '#595858', fontSize: 14, marginTop:10, alignContent:"center", textAlign:"center" }}>Nenhum Registro Encontrado!</Text>
                 
                 :
+
 
                 <View>
                      <SwipeableRow
@@ -80,9 +84,9 @@ CardAlimentacao = ({ data }= DadosProps) => {
                     > 
 
                                   
-                <View>
-                    <Text style={styles.name}>{data.nome}</Text>
-                </View>
+            <View>
+               <Text style={styles.name}>{data.nome}</Text>
+           </View>
 
                     <ScrollView
                         style={{ flex: 1 }}
