@@ -34,7 +34,7 @@ export const styles = StyleSheet.create({
         marginLeft: -30
     },
     lateral2:{
-        backgroundColor: "#E28934B2",
+        backgroundColor: "#E28934",
         width: 100,
         height: 100,
         marginTop: -10,
@@ -43,7 +43,7 @@ export const styles = StyleSheet.create({
     },
 
     lateral3:{
-        backgroundColor: "#E28934B2",
+        backgroundColor: "#E28934",
         width: 100,
         height: 100,
         marginLeft: 330,

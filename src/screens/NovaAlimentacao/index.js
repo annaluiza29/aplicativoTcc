@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {ScrollView, Alert, Text, TextInput, View, TouchableOpacity, ActivityIndicator} from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import {useNavigation} from '@react-navigation/core';
@@ -12,33 +12,125 @@ import api from '../../services/api';
 
 
 
-
-
 const NovaAlimentacao = FC = () => {
     const navigation = any = useNavigation();
 
+  {/*  const [nome, setNome] = useState([]);
+    const [id, setId] = useState([]);
+
+
+    useEffect(() => {
+        NomeSelec()
+    },[]);
+
+
+    const NomeSelec = async () => { 
+
+            const response = await api.get(`pam3etim/BD/usuarios/listarNomes.php`);
+
+
+            
+           setNome(response.data.resultado.nome);
+        
+      
+    const nomes =[{nomeAnimal: nome, valor: id}]
+
+
+            
+            setNome(response.data.resultado.map(item => item.nome));
+            setId(response.data.resultado.map(item => item.id));
+
+            console.log(nome);
+            console.log(id);
+
+       
+        
+            let nomeItem = nomes.map((v,k) => {
+                return <Picker.Item  key={k} value={k} label={v.nomeAnimal}>
+                </Picker.Item>
+                
+            });
+        
+          
+
+
+
+
+        return (
+<View>
+
+   <Text>cachorrinho</Text>
+
+        <Picker
+
+        style={styles.pickerperiodo}
+        selectedValue={nome}
+        onValueChange={(itemValue, itemIndex) => setNome(itemValue)}
+ 
+    >
+        {nomeItem}
+
+    </Picker>  
+    </View>
+        )
+    }
+        }  */}
+    
     const [nome, setNome] = useState("");
+    const [id, setId] = useState([]);
+    const [nomes, setNomes] = useState([]);
     const [quantidade, setQuantidade] = useState("");
     const [periodo, setperiodo] = useState('');  
     const handleOptionChange = (itemValue) => {
           setperiodo(itemValue);};
-    const handleOptionChanges = (itemValue) => {
-          setNome(itemValue);};
     const [sucess, setSucess] = useState(false);
     const [loading, setLoading] = useState(false);
     const [horario, setHorario] = useState("");
+        const [dateHorario, setDateHorario] = useState("");
+
     const [showTimePicker, setShowTimePicker] = useState(false);
 
   const handleTimeChange = (event, selectedDate) => {
     if (selectedDate) { 
+
+      const formattedDate= selectedDate.getDate();
       const formattedHour = selectedDate.getHours();
       const formattedMinute = selectedDate.getMinutes();
       setHorario(`${formattedHour}:${formattedMinute}`);
+      setDateHorario(`${formattedDate}`);
     }
     setShowTimePicker(false);
   };
 
+  useEffect(() => {
+    NomeSelec()
+},[]);
 
+
+const NomeSelec = async () => { 
+
+        const response = await api.get(`pam3etim/BD/usuarios/listarNomes.php`);
+
+
+        setNome(response.data.resultado.map(item => item.nome));
+        setId(response.data.resultado.map(item => item.id));
+
+     
+     nomes =[{nomeAnimal: nome, valor: id}]
+
+        console.log(nome);
+   //     console.log(id);
+    };
+    
+   
+    
+         let nomeItem = nomes.map((v,k) => {
+             return <Picker.Item  key={k} value={k} label={v.nomeAnimal}>
+            </Picker.Item>
+            
+        });
+
+    
   
     async function saveData() {
 
@@ -124,19 +216,22 @@ const NovaAlimentacao = FC = () => {
 
             <ScrollView>
 
-                <View>
-                    <Text style={styles.TitleInputs}>Nome do Pet:</Text>
+            <View>
+
+                <Text>cachorrinho</Text>
 
                     <Picker
-                        style={styles.pickerperiodo}
-                        selectedValue={nome}
-                        onValueChange={handleOptionChanges}
-                    >
-                        <Picker.Item label="Manhã" value="Manha" />
-                        <Picker.Item label="Tarde" value="Tarde" />
-                        <Picker.Item label="Noite" value="Noite" />
-                    </Picker>                                                           
+
+                    style={styles.pickerperiodo}
+                    selectedValue={nome}
+                    onValueChange={(itemValue, itemIndex) => setNome(itemValue)}
+
+                >
+                    {nomeItem}
+
+                </Picker>  
                 </View>
+
 
                 <View>
                     <Text style={styles.TitleInputs}>Período:</Text>
@@ -202,7 +297,8 @@ const NovaAlimentacao = FC = () => {
             </ScrollView>
 
         </View>
-    );
-}
+            ); 
+            
+        }
 
 export default NovaAlimentacao;
