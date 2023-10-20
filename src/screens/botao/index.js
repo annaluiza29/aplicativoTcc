@@ -31,7 +31,7 @@ const BotaoSwitch = () => {
   return (
     <View style={styles.container}>
       <View style={styles.switchContainer}>
-        <Text>Alimentador: {valor ? 'Ligado' : 'Desligado'}</Text>
+        <Text style={styles.Text}>Alimentador: {valor ? 'Ligado' : 'Desligado'}</Text>
         <Switch
           value={valor}
           onValueChange={toggleSwitch}
@@ -48,6 +48,9 @@ const styles = StyleSheet.create({
   switchContainer: {
     flexDirection: 'row',
     alignItems: 'center',
+  },
+  Text:{
+    fontSize: 16
   },
 });
 

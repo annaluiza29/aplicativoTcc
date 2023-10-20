@@ -180,9 +180,7 @@ CardHome = ({ data }= DadosProps) => {
                         </View>
 
                         </View>
-
-
-                        
+ 
                         </View>
                         </View>
 

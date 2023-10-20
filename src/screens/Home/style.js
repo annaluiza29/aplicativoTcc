@@ -245,7 +245,7 @@ export const styles = StyleSheet.create({
         bottom: 20,
         right: 20,
         position: 'absolute',
-        backgroundColor: 'green',
+        backgroundColor: '#E28934',
         borderRadius: 10,
         zIndex: 9,
         width: 50,

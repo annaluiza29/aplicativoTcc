@@ -34,7 +34,7 @@ export const styles = StyleSheet.create({
 
     SairText:{
         fontFamily: fonts.text,
-        fontSize: 18,
+        fontSize: 20,
         color: '#000',
         alignSelf: "center",
         marginLeft: 20,
@@ -45,8 +45,8 @@ export const styles = StyleSheet.create({
     },
 
     logo:{
-        width: 135,
-        height: 50,
+        width: 150,
+        height: 70,
         alignSelf: "center",
         marginTop: 10,
     },

@@ -32,7 +32,7 @@ const CustomDrawer= FC = () => {
 
     return (
         <View style={{ flex: 1, backgroundColor: '#fff' }}>
-            <Image style={styles.logo} source={require('../../assets/logo2.png')} />
+            <Image style={styles.logo} source={require('../../assets/logo3.png')} />
 
             <View style={{ width: '90%', backgroundColor: '#c1c1c1', height: 0.5, alignSelf: 'center', marginBottom: 5, marginTop: 20 }}></View>
 
@@ -52,7 +52,7 @@ const CustomDrawer= FC = () => {
                     onPress={() => logout()}
                     style={styles.Sair}
                 >
-                    <MaterialIcons name="subdirectory-arrow-left" size={25} color="gray" />
+                    <MaterialIcons name="subdirectory-arrow-left" size={27} color="gray" />
                     <Text style={styles.SairText}>Sair da conta</Text>
                 </TouchableOpacity>
             </View>

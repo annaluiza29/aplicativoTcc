@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { AntDesign, MaterialIcons, MaterialCommunityIcons, Ionicons  } from '@expo/vector-icons';
+import { AntDesign, MaterialIcons, MaterialCommunityIcons, Ionicons } from '@expo/vector-icons';
 
 import fonts from '../styles/fonts';
 
@@ -24,7 +24,7 @@ const AuthRoutes = () => {
     return (
         <AppTab.Navigator
         screenOptions={{
-                tabBarActiveTintColor: "green",
+                tabBarActiveTintColor: "#E28934",
                 tabBarInactiveTintColor: 'gray',
                 tabBarHideOnKeyboard: false,
                 tabBarLabelPosition: 'below-icon',
@@ -56,12 +56,12 @@ const AuthRoutes = () => {
                                     style={ focused ? {
                                         color: color,
                                         fontFamily: fonts.text,
-                                        fontSize: 12,
+                                        fontSize: 15,
                                         textAlign: 'center',
                                     } : {
                                         color: color,
                                         fontFamily: fonts.text,
-                                        fontSize: 12
+                                        fontSize: 15
                                     }}
                                 >
                                     Home
@@ -94,7 +94,7 @@ const AuthRoutes = () => {
                     options={{
                         tabBarIcon: (({size, color}) => (
                             <MaterialCommunityIcons
-                                name="calendar-clock"
+                                name="dog"
                                 size={size}
                                 color={color}
                             />
@@ -106,15 +106,15 @@ const AuthRoutes = () => {
                                     style={ focused ? {
                                         color: color,
                                         fontFamily: fonts.text,
-                                        fontSize: 12,
+                                        fontSize: 15,
                                         textAlign: 'center',
                                     } : {
                                         color: color,
                                         fontFamily: fonts.text,
-                                        fontSize: 12
+                                        fontSize: 15
                                     }}
                                 >
-                                    Alimentacao
+                                    Alimentação
                                 </Text>
                                 <View
                                     style={ focused ? {
