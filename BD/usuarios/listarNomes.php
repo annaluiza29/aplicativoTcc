@@ -1,25 +1,37 @@
 <?php
 
 // Conexao com BD
-include_once "conexao.php";
+include_once('../conexao.php');
 
-// QUERY para recuperar registro do banco de dados
-$query_sits = "SELECT id, nome FROM novopet ORDER BY nome ASC";
-//$query_sits = "SELECT id, nome FROM situacoes WHERE id = 100 ORDER BY nome ASC";
-$result_sits = $conn->prepare($query_sits);
-$result_sits->execute();
 
-if(($result_sits) and ($result_sits->rowCount() != 0)){
-    while($row_sit = $result_sits->fetch(PDO::FETCH_ASSOC)){
-        extract($row_sit);
-        $dados[] = [
-            'id' => $id,
-            'nome' => $nome
-        ];
-    }
-    $response = ['status' => true, 'dados' => $dados];
-}else{
-    $response = ['status' => false, 'msg' => "<p style='color: #f00'>Erro: Nenhuma situação encontrada, entre em contato com o ...!</p>"];
+
+$postjson = json_decode(file_get_contents('php://input'), true);
+
+
+$query = $pdo->prepare("SELECT id, nome FROM novopet ORDER BY nome ASC");
+
+$query->execute();
+
+$res = $query->fetchAll(PDO::FETCH_ASSOC);
+
+
+
+for ($i=0; $i < count($res); $i++) { 
+      $dados[] = array(
+        'id' => $res[$i]['id'],
+        'nome' => $res[$i]['nome']      
+
+    );
+
 }
 
-echo json_encode($response);
+
+if(count($res) > 0){
+    $result = json_encode(array('success'=>true, 'resultado'=>@$dados));
+}else{
+    $result = json_encode(array('success'=>false, 'resultado'=>'0'));
+}
+
+echo $result;
+
+?>

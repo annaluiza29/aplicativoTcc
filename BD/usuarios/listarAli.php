@@ -22,7 +22,6 @@ for ($i=0; $i < count($res); $i++) {
         'id' => $res[$i]['id'],
         'nome' => $res[$i]['nome'],        
         'quantidade' => $res[$i]['quantidade'],
-        'periodo' => $res[$i]['periodo'],
         'horario' => $res[$i]['horario'],
     );
 

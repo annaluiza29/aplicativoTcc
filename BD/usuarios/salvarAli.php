@@ -6,7 +6,6 @@ $postjson = json_decode(file_get_contents('php://input'), true);
 
 $id = @$postjson['id'];
 $nome = @$postjson['nome'];
-$periodo = @$postjson['periodo'];
 $horario = @$postjson['horario'];
 $quantidade = @$postjson['quantidade'];
 
@@ -19,16 +18,15 @@ $total_reg = @count($res);
 
 
 if($id == "" || $id == "0"){
-	$res = $pdo->prepare("INSERT INTO $tabela SET nome = :nome, periodo = :periodo, horario = :horario, quantidade = :quantidade");	
+	$res = $pdo->prepare("INSERT INTO $tabela SET nome = :nome, horario = :horario, quantidade = :quantidade");	
 
 }else{
-	$res = $pdo->prepare("UPDATE $tabela SET nome = :nome, periodo = :periodo, horario = :horario, quantidade = :quantidade where id = '$id'");
+	$res = $pdo->prepare("UPDATE $tabela SET nome = :nome, horario = :horario, quantidade = :quantidade where id = '$id'");
 	
 }
 
 
 $res->bindValue(":nome", "$nome");
-$res->bindValue(":periodo", "$periodo");
 $res->bindValue(":horario", "$horario");
 $res->bindValue(":quantidade", "$quantidade");
 
