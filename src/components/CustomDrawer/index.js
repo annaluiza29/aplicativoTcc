@@ -1,9 +1,11 @@
 import React, {useState} from 'react';
-import { Alert, AsyncStorage, Image, ScrollView, Text, TouchableOpacity, View, Switch } from 'react-native';
+import { Alert, Image, ScrollView, Text, TouchableOpacity, View, Switch } from 'react-native';
 import { MaterialIcons, Entypo } from '@expo/vector-icons';
 import { styles } from './styles';
 import { DrawerActions, useNavigation } from '@react-navigation/core';
 import Botao from '../../screens/botao'
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 const CustomDrawer= FC = () => {
     const navigation=  any= useNavigation();
